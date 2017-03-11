@@ -1,0 +1,19 @@
+body{
+    padding-top: 50px;
+}
+
+.starter-template{
+    padding: 40px 15px;
+}
+
+form{
+    width: 400px;
+    max-width: 400px;
+}
+.navbar-fixed-bottom, .navbar-fixed-top{
+    position: absolute;
+}
+.alert{
+    width: 400px;
+    max-width: 400px;
+}
