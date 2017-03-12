@@ -7,7 +7,6 @@
             $this->model = new Message();
         }
 
-
         public function index(){
             if($_POST){
                 if($this->model->save($_POST)){

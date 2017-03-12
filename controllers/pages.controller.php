@@ -11,9 +11,13 @@
 
         public function index()
         {
+
             $this->data['pages'] = $this->model->getList();
 
         }
+//        public function test(){
+//
+//        }
 
         public function test3()
         {
@@ -27,7 +31,7 @@
             if (isset($params[0])) {
                 $alias = strtolower($params[0]);
                 $this->data['page'] = $this->model->getByAlias($alias);
-            }
+            }else echo "this text is from pages.controller. view function";
         }
 
         public function admin_index()
