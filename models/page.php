@@ -32,7 +32,7 @@
             }
 
             $id = (int)$id;
-asdasd 
+
             $alias = $this->db->escape($data['alias']);
             $title = $this->db->escape($data['title']);
             $content = $this->db->escape($data['content']);
