@@ -20,7 +20,7 @@
                     messages = '{$message}' 
                 
                 ";
-                var_dump($message);
+                //var_dump($message);
             }else{  //update existing record
                 $sql = "
                 update  messages

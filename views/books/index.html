@@ -1,0 +1,22 @@
+thats index of books controller
+
+<?php foreach($data['books'] as $book_data) { ?>
+<div class="book">
+    <div class="books-main" style="margin-top: 20px;">
+    <?php if($book_data['is_published'] == 1){ ?>
+    <p><?=$book_data['author']?></p>
+    <p><a href = "/books/view/<?=$book_data['alias']?>"><?=$book_data['title']?></a></p>
+    <p><?=$book_data['category']?></p>
+    <p><?=$book_data['description']?></p>
+    <p><?=$book_data['add_date']?></p>
+    </div>
+
+    <div class="book-picture">
+    <img src="<?=Config::get('images') . $book_data['picture_path']?>"
+         alt="Картинка книги <?=$book_data['title']?> ">
+    </div>
+
+</div>
+<?php } ?>
+
+<?php } ?>

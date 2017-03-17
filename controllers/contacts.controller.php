@@ -10,7 +10,7 @@
         public function index(){
             if($_POST){
                 if($this->model->save($_POST)){
-                    Session::setFlash('Thank you, your message was sent succesfully');
+                    Session::setFlash('Thank you, your message was sent successfully');
                 }
             }
         }

@@ -1,0 +1,33 @@
+
+<div class="book page-book">
+    <div class="books-main" style="margin-top: 20px;">
+
+        <p>Автор книги: <b><?=$data['book']['author']?></b></p>
+
+        <p>Категория: <b><?=$data['book']['category']?></b></p>
+        <p>Описание: <b><?=$data['book']['description']?></b></p>
+        <p>Дата загрузки: <b><?=$data['book']['add_date']?></b></p>
+    </div>
+
+    <div class="book-picture">
+        <img src="<?=Config::get('images') . $data['book']['picture_path']?>"
+             alt="Картинка книги <?=$data['book']['title']?> ">
+    </div>
+    <div>
+        <?php
+        $file = Config::get('books') . $data['book']['file_name'];
+
+        if(file_exists(Config::get('root') . $file)){
+        echo" <p><a href=$file
+               download>Скачать книгу</a></p>" ;
+         }
+
+?>
+
+    </div>
+
+
+
+   <?// Удали коммент, чтобы увидеть имя файла php echo $data['book']['file_name']; ?>
+
+</div>
