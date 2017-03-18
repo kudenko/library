@@ -1,5 +1,5 @@
 <div>
-
+    <?php //var_dump($data['categories']) ?>
     <p>Загрузите книгу, чтобы она стала доступно другим пользователям сайта. </p>
     <form enctype="multipart/form-data" method="post" action="">
 
@@ -7,21 +7,32 @@
             <input type="hidden" id="alias" name="alias" value=" <?= time(); ?>" class="form-control"/>
         </div>
         <div class="form-group">
-            <label for="author">Title</label>
+            <label for="author">Автор</label>
             <input type="text" id="author" name="author" value="" class="form-control"/>
         </div>
 
 
-        //добавить категорию;
-        //дополнительную категорию;
 
         <div class="form-group">
-            <label for="title">Title</label>
+            <label for="title">Название</label>
             <input type="text" id="title" name="title" value="" class="form-control"/>
         </div>
+
+
+        <div class="form-group">
+        <p>Категория:
+            <select class="selectpicker" size="1"  name="category">
+            <?php  foreach($data['categories'] as $data_category){ ?>
+
+            <option value=<?=$data_category['category_id']?>>
+                <?=$data_category['category']?></option>
+                <?php } ?>
+        </select></p>
+        </div>
+
         <div class="form-group">
             <label for="description">Введите короткое описание книги</label>
-            <textarea id="description" name="description" class="form-control">
+            <textarea id="description" name="description" rows="15" class="form-control">
 
             </textarea>
         </div>

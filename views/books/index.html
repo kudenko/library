@@ -1,12 +1,27 @@
 thats index of books controller
 
-<?php foreach($data['books'] as $book_data) { ?>
+<?php foreach($data['books'] as $book_data) {
+if($book_data['is_published']){
+
+
+?>
 <div class="book">
+
     <div class="books-main" style="margin-top: 20px;">
     <?php if($book_data['is_published'] == 1){ ?>
     <p><?=$book_data['author']?></p>
     <p><a href = "/books/view/<?=$book_data['alias']?>"><?=$book_data['title']?></a></p>
-    <p><?=$book_data['category']?></p>
+
+
+
+       <?php foreach ($data['categories'] as $data_category){
+        if($book_data['category'] == $data_category['category_id']){
+        echo "<p>Категория: " . $data_category['category'] ?>
+
+        <?php } ?>
+        <?php } ?>
+
+
     <p><?=$book_data['description']?></p>
     <p><?=$book_data['add_date']?></p>
     </div>
@@ -19,4 +34,4 @@ thats index of books controller
 </div>
 <?php } ?>
 
-<?php } ?>
+<?php } }?>

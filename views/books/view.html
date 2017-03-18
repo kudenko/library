@@ -4,7 +4,13 @@
 
         <p>Автор книги: <b><?=$data['book']['author']?></b></p>
 
-        <p>Категория: <b><?=$data['book']['category']?></b></p>
+        <?php foreach ($data['categories'] as $data_category){
+        if($data['book']['category'] == $data_category['category_id']){
+        echo "<p>Категория: " . $data_category['category'] ?>
+
+        <?php } ?>
+        <?php } ?>
+
         <p>Описание: <b><?=$data['book']['description']?></b></p>
         <p>Дата загрузки: <b><?=$data['book']['add_date']?></b></p>
     </div>

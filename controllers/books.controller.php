@@ -11,6 +11,7 @@
         {
 
             $this->data['books'] = $this->model->getList();
+            $this->data['categories'] = $this->model->getCategories();
 
         }
 //        public function test(){
@@ -30,6 +31,8 @@
             $alias = strtolower($params[0]);
             $this->data['book'] = $this->model->getByAlias($alias);
         }else echo "this text is from pages.controller. view function";
+
+        $this->data['categories'] = $this->model->getCategories();
     }
 
     public function admin_index()
@@ -38,27 +41,42 @@
     }
 
     public function admin_edit()
+
     {
+        var_dump($_FILES);
+        $this->data['categories'] = $this->model->getCategories();
 
-        if ($_POST) {
-            // var_dump($_POST);
-            $id = isset($_POST['id']) ? $_POST['id'] : null;
+        $uploaddirPicture = Config::get('root') . Config::get('images');
+        $uploaddirBook = Config::get('root') . Config::get('books');
+        if(isset($_FILES['book']) && isset($_FILES['image'])){
+            move_uploaded_file($_FILES['book']['tmp_name'], $uploaddirBook .
+                $_FILES['book']['name']);
+            move_uploaded_file($_FILES['image']['tmp_name'], $uploaddirPicture .
+                $_FILES['image']['name']);
 
-            $result = $this->model->save($_POST, $id);
-            if ($result) {
-                Session::setFlash("Page was saved");
-            } else {
-                Session::setFlash("Page did't saved");
+            if ($_POST) {
+                // var_dump($_POST);
+                $id = isset($_POST['id']) ? $_POST['id'] : null;
+
+                $result = $this->model->save($_POST, $id);
+                if ($result) {
+                    Session::setFlash("Page was saved");
+                } else {
+                    Session::setFlash("Page did't saved");
+                }
+                //Router::redirect('/admin/books');
             }
-            Router::redirect('/admin/pages');
+
         }
+
+
 
         if (isset($this->params[0])) {
             // echo 'working admin edit';
             $this->data['book'] = $this->model->getById($this->params[0]);
         } else {
             Session::setFlash('Wrong page id');
-            Router::redirect('/admin/pages/');
+            Router::redirect('/admin/books/');
         }
     }
 
@@ -71,7 +89,7 @@
             } else {
                 Session::setFlash("Page did't saved");
             }
-            Router::redirect('/admin/pages');
+            Router::redirect('/admin/books');
         }
     }
 
@@ -90,7 +108,9 @@
     }
 
     public function download(){
+        var_dump($_FILES);
 
+    $this->data['categories'] = $this->model->getCategories();
     $uploaddirPicture = Config::get('root') . Config::get('images');
     $uploaddirBook = Config::get('root') . Config::get('books');
     //$dir = '/home/grey/hometask/php-academy/homeworks/functions_forms_tasks/6/gallery';
@@ -100,7 +120,15 @@
                 $_FILES['book']['name']);
             move_uploaded_file($_FILES['image']['tmp_name'], $uploaddirPicture .
                 $_FILES['image']['name']);
-        }else{echo 'error';}
+
+            if($_POST){
+                if($this->model->save($_POST)){
+                    Session::setFlash('Thank you, your book was sent successfully');
+                }
+            }
+        }else{echo 'error from books controller ';
+
+        }
 
 
 

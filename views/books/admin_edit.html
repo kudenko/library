@@ -1,0 +1,83 @@
+<h3>Edit page</h3>
+<form method="post" enctype="multipart/form-data" action="">
+
+    <input type="hidden"  name="id" value="<?=$data['book']['id']?>"/>
+
+
+
+    <div class="form-group">
+        <label for="alias">Alias</label>
+        <input type="text" id="alias" name="alias" value="<?= $data['book']['alias'] ?>" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="author">Автор</label>
+        <input type="text" id="author" name="author" value="<?= $data['book']['author'] ?>" class="form-control"/>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="title">Название</label>
+        <input type="text" id="title" name="title" value="<?= $data['book']['title'] ?>" class="form-control"/>
+    </div>
+
+
+
+    <div class="form-group">
+        <p>Категория:
+            <select class="selectpicker" size="1"  name="category">
+                <?php  foreach($data['categories'] as $data_category){ ?>
+
+                <option value=<?=$data_category['category_id']?>>
+                    <?=$data_category['category']?></option>
+                <?php } ?>
+            </select></p>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <label for="description">Описание</label>
+        <textarea id="description" name="description" rows="15"  class="form-control"><?= $data['book']['description'] ?>
+
+        </textarea>
+    </div>
+
+
+
+
+
+    <input type="hidden" name ="MAX_FILE_SIZE" value="99999999"/>
+
+    <p>Выберите изображение для замены:
+        <input name="image" type="file"  class="btn btn-success" /></p>
+    <div class="book-picture">
+        <img src="<?=Config::get('images') . $data['book']['picture_path']?>"
+             alt="Картинка книги <?=$data['book']['title']?> ">
+    </div>
+
+    <div>
+        <?php
+        $file = Config::get('books') . $data['book']['file_name'];
+
+        if(file_exists(Config::get('root') . $file)){
+        echo" <p><a href=$file
+                    download>Скачать книгу</a></p>" ;
+        }
+
+        ?>
+
+    </div>
+    <p>Выберите книгу для замены:
+        <input name="book" type="file"  class="btn btn-success" /></p>
+
+    <input type="hidden"  name="book2" value="<?=$data['book']['file_name']?>"/>
+    <input type="hidden"  name="image2" value="<?=$data['book']['picture_path']?>"/>
+
+    <div class="form-group">
+        <label for="is_published">Publish</label>
+        <input type="checkbox" id="is_published" name="is_published" <?php if( $data['book']['is_published'] ) { ?>checked="checked"<?php } ?>/>
+    </div>
+    <input type="submit" class="btn btn-success" />
+</form>
