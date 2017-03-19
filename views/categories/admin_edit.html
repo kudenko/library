@@ -1,0 +1,21 @@
+<h3>Edit page</h3>
+<form method="post"  action="">
+<?php
+
+    foreach($data['category'] as $item){
+?>
+
+
+
+    <input type="hidden"  name="id" value="<?= $item['category_id'] ?>"/>
+
+<?php  //var_dump($data['category']); ?>
+
+    <div class="form-group">
+        <label for="category">Категория</label>
+        <input type="text" id="category" name="category" value="<?= $item['category'] ?>" class="form-control"/>
+    </div>
+    <input type="submit" class="btn btn-success" />
+</form>
+
+<?php } ?>

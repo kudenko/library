@@ -1,0 +1,39 @@
+<div class="categories">
+   <h3>Категория: <?php  foreach($data['category'] as $a)
+        echo($a['category']);
+
+?>
+   </h3>
+</div>
+<div class="allbooks">
+    <table class="table table-stripped" style="width: 100%;">
+        <tr>
+            <td style="width: 5%;">Название книги</td>
+            <td style="width: 10%;">Автор</td>
+            <td style="width: 10%;">Ссылка для скачивания</td>
+
+
+        </tr>
+        <?php foreach($data['categories'] as $item){ ?>
+        <tr>
+            <td><?=$item['title']?></td>
+            <td><?=$item['author']?></td>
+            <td><?php
+        $file = Config::get('books') . $item['file_name'];
+       // var_dump($item['file_name']);
+        if($item['file_name'] != ''){
+        echo" <p><a href=$file
+                    download>Скачать книгу</a></p>" ;
+                }
+
+                ?></td>
+        </tr>
+        <?php }?>
+    </table>
+
+
+
+</div>
+
+
+

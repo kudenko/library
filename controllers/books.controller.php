@@ -104,7 +104,7 @@
                 Session::setFlash("Page did't deleted");
             }
         }
-        Router::redirect('/admin/pages');
+        Router::redirect('/admin/books');
     }
 
     public function download(){
