@@ -61,9 +61,32 @@
 
         }
 
+        public function admin_add(){
+            if($_POST){
+                $result = $this->model->save($_POST, $id);
+                if ($result) {
+                    Session::setFlash("Category was saved");
+                } else {
+                    Session::setFlash("Category did't saved");
+                }
+                Router::redirect('/admin/categories');
+            }
+        }
 
 
+        public function admin_delete()
+        {
+            if (isset($this->params[0])) {
+                $result = $this->model->delete($this->params[0]);
 
+                if ($result) {
+                    Session::setFlash("Category was deleted");
+                } else {
+                    Session::setFlash("Category did't deleted");
+                }
+            }
+            Router::redirect('/admin/categories');
+        }
 
 
 

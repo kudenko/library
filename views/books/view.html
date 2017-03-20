@@ -3,6 +3,7 @@ that is view books tpl
     <div class="books-main" style="margin-top: 20px;">
 
         <p>Автор книги: <b><?=$data['book']['author']?></b></p>
+        <p>Название книги: <b><?=$data['book']['title']?></b></p>
 
         <?php foreach ($data['categories'] as $data_category){
         if($data['book']['category'] == $data_category['category_id']){

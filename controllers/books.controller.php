@@ -18,9 +18,9 @@
 //
 //        }
 
-    public function test3()
+    public function admin_about()
     {
-        $this->data['wtf'] = 'test3 in controller';
+        //$this->data['about'] = 'test3 in controller';
     }
 
     public function view()
@@ -43,7 +43,7 @@
     public function admin_edit()
 
     {
-        var_dump($_FILES);
+       // var_dump($_FILES);
         $this->data['categories'] = $this->model->getCategories();
 
         $uploaddirPicture = Config::get('root') . Config::get('images');
@@ -82,14 +82,24 @@
 
     public function admin_add()
     {
-        if ($_POST) {
-            $result = $this->model->save($_POST);
-            if ($result) {
-                Session::setFlash("Page was saved");
-            } else {
-                Session::setFlash("Page did't saved");
+        $this->data['categories'] = $this->model->getCategories();
+        $uploaddirPicture = Config::get('root') . Config::get('images');
+        $uploaddirBook = Config::get('root') . Config::get('books');
+        //$dir = '/home/grey/hometask/php-academy/homeworks/functions_forms_tasks/6/gallery';
+
+        if(isset($_FILES['book']) && isset($_FILES['image'])){
+            move_uploaded_file($_FILES['book']['tmp_name'], $uploaddirBook .
+                $_FILES['book']['name']);
+            move_uploaded_file($_FILES['image']['tmp_name'], $uploaddirPicture .
+                $_FILES['image']['name']);
+
+            if($_POST){
+                if($this->model->save($_POST)){
+                    Session::setFlash('Thank you, your book was sent successfully');
+                }
             }
-            Router::redirect('/admin/books');
+        }else{echo 'error from books controller ';
+
         }
     }
 
@@ -99,16 +109,16 @@
             $result = $this->model->delete($this->params[0]);
 
             if ($result) {
-                Session::setFlash("Page was deleted");
+                Session::setFlash("Category was deleted");
             } else {
-                Session::setFlash("Page did't deleted");
+                Session::setFlash("Category did't deleted");
             }
         }
         Router::redirect('/admin/books');
     }
 
     public function download(){
-        var_dump($_FILES);
+        //var_dump($_FILES);
 
     $this->data['categories'] = $this->model->getCategories();
     $uploaddirPicture = Config::get('root') . Config::get('images');
@@ -129,6 +139,8 @@
         }else{echo 'error from books controller ';
 
         }
+
+
 
 
 

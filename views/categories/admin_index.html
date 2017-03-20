@@ -8,10 +8,17 @@
     <?php foreach($data as $item){ ?>
     <tr>
         <td><?=$item['category_id']?></td>
-        <td><a href = "/categories/view/<?=$item['category_id']?>"><?=$item['category']?></a></td>
-        <td><a href="/admin/categories/edit/<?= $item['category_id'] ?>"><button class="btn btn-sm btn-primary">
+        <td><?=$item['category']?></td>
+        <td align="right"><a href="/admin/categories/edit/<?= $item['category_id'] ?>"><button class="btn btn-sm btn-primary">
             Edit</button></a></td>
+        <td><a href="/admin/categories/delete/<?= $item['category_id'] ?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">
+            Delete</button></a></td>
     </tr>
     <?php }?>
+
 </table>
+<div>
+    <a href="/admin/categories/add/"><button class="btn btn-sm btn-success">
+        New Page</button></a>
+</div>
 

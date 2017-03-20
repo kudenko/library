@@ -49,4 +49,14 @@
 
         }
 
+        public function delete($id){
+            $id = (int)$id;
+            $sql = "
+                delete from book_categories
+                where category_id = '{$id}'
+            ";
+
+            return $this->db->query($sql);
+        }
+
     }
