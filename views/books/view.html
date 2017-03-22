@@ -1,4 +1,4 @@
-that is view books tpl
+
 <div class="book page-book">
     <div class="books-main" style="margin-top: 20px;">
 
@@ -14,22 +14,26 @@ that is view books tpl
 
         <p>Описание: <b><?=$data['book']['description']?></b></p>
         <p>Дата загрузки: <b><?=$data['book']['add_date']?></b></p>
+        <div>
+            <p>
+                <?php
+        $file = Config::get('books') . $data['book']['file_name'];
+
+        if($data['book']['file_name'] != ''){
+        echo" <p><a href=$file
+                    download>Скачать книгу</a></p>" ;
+            }
+
+            ?>
+        </div>
     </div>
 
     <div class="book-picture">
         <img src="<?=Config::get('images') . $data['book']['picture_path']?>"
              alt="Картинка книги <?=$data['book']['title']?> ">
     </div>
-    <div>
-        <?php
-        $file = Config::get('books') . $data['book']['file_name'];
 
-        if(file_exists(Config::get('root') . $file)){
-        echo" <p><a href=$file
-               download>Скачать книгу</a></p>" ;
-         }
-
-?>
+    </div>
 
     </div>
 

@@ -98,7 +98,7 @@
                     Session::setFlash('Thank you, your book was sent successfully');
                 }
             }
-        }else{echo 'error from books controller ';
+        }else{//echo 'error from books controller ';
 
         }
     }
@@ -136,7 +136,7 @@
                     Session::setFlash('Thank you, your book was sent successfully');
                 }
             }
-        }else{echo 'error from books controller ';
+        }else{//echo 'error from books controller ';
 
         }
 

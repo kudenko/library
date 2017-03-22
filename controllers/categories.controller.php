@@ -25,7 +25,7 @@
             if (isset($params[0])) {
                 $alias = strtolower($params[0]);
                 $this->data['categories'] = $this->model->getByAlias($alias);
-                $this->data['category']  = $this->model->getCategory($alias);
+                $this->data['category']  = $this->model->getCategoryById($alias);
             }else echo "this text is from pages.controller. view function";
 
         }

@@ -1,6 +1,7 @@
 body{
 background-color: grey;
 font-size: 16px;
+    height: 100%;
 }
 
 header{
@@ -30,6 +31,11 @@ footer{
     background-color: #C0C0C0;
     min-height: 100px;
     margin-bottom: 0px;
+    margin-top: 0px;
+    height: 50px;
+    margin-top: -30px;
+    position: relative;
+    text-align: center;
 }
 footer>p{
     margin-top:0;
@@ -110,4 +116,8 @@ margin-right: auto;
 
  .table{
      width: 100px;
+ }
+
+ .download{
+     margin-left: 220px;
  }
