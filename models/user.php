@@ -16,7 +16,6 @@
         public function save($data){
             if( !(($data['password'])) || !(($data['login'])) || !(($data['email'])) ){
 
-                echo "dsads";
                 return false;
             }
 

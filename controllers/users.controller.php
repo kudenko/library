@@ -26,12 +26,13 @@
 
         public function registration()
         {
-            echo 'test registration page from controller';
             if (isset($_POST['login']) && isset($_POST['password']) && isset($_POST['email'])) {
                 if ($_POST['password'] == $_POST['rep_pass']) {
 
                     if($this->model->save($_POST)) {
+
                         Session::setFlash('Пользователь успешно создан');
+
                     }else{
                         Session::setFlash('Все поля при регистрации должны быть заполнены');
 
@@ -58,5 +59,10 @@
                 }
                 //Router::redirect('/admin/');
             }
+        }
+
+        public function logout(){
+            Session::destroy();
+            Router::redirect('/');
         }
     }

@@ -1,9 +1,9 @@
-thats index of books controller
 
-<?php if(Session::get('role') == 'user'){
 
-echo('from session user');
-}else echo ('from session not user')
+<?php if( (Session::get('role') == '') ){
+
+echo('<p>Для загрузки книг нужно залогиниться</p>');
+}
 
 ?>
 

@@ -29,15 +29,45 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-
+                <?php
+                if( (Session::get('role') == 'admin') || ( Session::get('role') == 'user') ){ ?>
                 <li><a <?php if (App::getRouter()->getController() == 'books'){
-                    ?>  class="active " <?php } ?>href="/books/download">Загрузить книгу</a></li>
+                    ?>
+                    class="active " <?php } ?>href="/books/download">Загрузить книгу</a></li>
+                <?php }
+                else {//echo 'else';
+                }
+?>
+
+
+
+
                 <li><a <?php if (App::getRouter()->getController() == 'categorie'){
                     ?>  class="active " <?php } ?>href="/categories/">Категория</a></li>
                 <li><a <?php if (App::getRouter()->getController() == 'books'){
                     ?>  class="active " <?php } ?>href="/users/registration">Регистрация</a></li>
+
+
+                <?php
+                if( (Session::get('role') == '') ){ ?>
+                    <li><a <?php if (App::getRouter()->getController() == 'categorie'){
+                        ?>
+                        class="active " <?php } ?>href="/users/login">Войти</a></li>
+                <?php }
+                else { ?>
                 <li><a <?php if (App::getRouter()->getController() == 'categorie'){
-                    ?>  class="active " <?php } ?>href="/users/login">Войти</a></li>
+                    ?>
+                    class="active " <?php } ?>href="/users/logout">Выйти[<?= Session::get('login')?>]</a></li>
+
+              <?php } ?>
+
+
+
+
+
+
+
+
             </ul>
         </div>
     </div>
@@ -65,11 +95,7 @@
         <p>Сайт Library создан исключительно в ознакомительных целях.
         Все вопросы и предложения можете отсылать сюда: <a href="mailto:ky_se_se@mail.ru">ky_se_se@mail.ru</a></p>
         <?php
-//var_dump($_SESSION);
 
-if ($_SESSION['role'] == 'admin'){
- echo 'dasdadasd';
- }
 
 ?>
     </footer>
