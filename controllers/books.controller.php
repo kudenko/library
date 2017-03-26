@@ -130,13 +130,15 @@
                 $_FILES['book']['name']);
             move_uploaded_file($_FILES['image']['tmp_name'], $uploaddirPicture .
                 $_FILES['image']['name']);
-
-            if($_POST){
-                if($this->model->save($_POST)){
-                    Session::setFlash('Thank you, your book was sent successfully');
+            if(($_FILES['book']['size'] != 0) && $_FILES['image']['size'] != 0) {
+                if ($_POST) {
+                    if ($this->model->save($_POST)) {
+                        Session::setFlash('Спасибо, книга загружена успешно. Она появится на сайте после проверки.');
+                    }
                 }
+            }else{
+                Session::setFlash('Вы не загрузили книгу или изображение. Пожалуйста, повторите попытку. ');
             }
-        }else{//echo 'error from books controller ';
 
         }
 

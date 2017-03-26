@@ -1,5 +1,13 @@
 thats index of books controller
 
+<?php if(Session::get('role') == 'user'){
+
+echo('from session user');
+}else echo ('from session not user')
+
+?>
+
+
 <?php foreach($data['books'] as $book_data) {
 if($book_data['is_published']){
 
@@ -9,9 +17,8 @@ if($book_data['is_published']){
 
     <div class="books-main" style="margin-top: 20px;">
     <?php if($book_data['is_published'] == 1){ ?>
-    <p><?=$book_data['author']?></p>
-    <p><a href = "/books/view/<?=$book_data['alias']?>"><?=$book_data['title']?></a></p>
-
+    <p>Автор: <?=$book_data['author']?></p>
+    <p>Книга: <a href = "/books/view/<?=$book_data['alias']?>"><?=$book_data['title']?></a></p>
 
 
        <?php foreach ($data['categories'] as $data_category){
@@ -22,8 +29,8 @@ if($book_data['is_published']){
         <?php } ?>
 
 
-    <p><?=$book_data['description']?></p>
-    <p><?=$book_data['add_date']?></p>
+    <p>Описание: <?=$book_data['description']?></p>
+    <p>Дата загрузки: <?=$book_data['add_date']?></p>
     </div>
 
     <div class="book-picture">

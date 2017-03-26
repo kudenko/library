@@ -21,8 +21,9 @@
 
             $layout = self::$router->getRoute();
             if($layout == 'admin' && Session::get('role') != 'admin'){
+                echo "from admim111 ";
                 if($controller_method != 'admin_login'){
-//                    echo "error";
+                   echo "from admim";
 //                    var_dump($controller_method);
 //                    die();
                     Router::redirect('/admin/users/login');

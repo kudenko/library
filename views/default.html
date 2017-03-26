@@ -34,6 +34,10 @@
                     ?>  class="active " <?php } ?>href="/books/download">Загрузить книгу</a></li>
                 <li><a <?php if (App::getRouter()->getController() == 'categorie'){
                     ?>  class="active " <?php } ?>href="/categories/">Категория</a></li>
+                <li><a <?php if (App::getRouter()->getController() == 'books'){
+                    ?>  class="active " <?php } ?>href="/users/registration">Регистрация</a></li>
+                <li><a <?php if (App::getRouter()->getController() == 'categorie'){
+                    ?>  class="active " <?php } ?>href="/users/login">Войти</a></li>
             </ul>
         </div>
     </div>
@@ -60,6 +64,14 @@
     <footer>
         <p>Сайт Library создан исключительно в ознакомительных целях.
         Все вопросы и предложения можете отсылать сюда: <a href="mailto:ky_se_se@mail.ru">ky_se_se@mail.ru</a></p>
+        <?php
+//var_dump($_SESSION);
+
+if ($_SESSION['role'] == 'admin'){
+ echo 'dasdadasd';
+ }
+
+?>
     </footer>
 </body>
 

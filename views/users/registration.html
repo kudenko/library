@@ -1,0 +1,38 @@
+<h3>Edit page</h3>
+<form method="post" enctype="multipart/form-data" action="">
+
+    <input type="hidden"  name="role" value="user"/>
+    <input type="hidden"  name="is_active" value=1/>
+
+
+
+    <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" id="login" name="login" value="" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" value="" class="form-control"/>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="rep_pass">Повторите пароль</label>
+        <input type="password" id="rep_pass" name="rep_pass" value="" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Укажите свой email</label>
+        <input type="email" id="email" name="email" value="" class="form-control"/>
+    </div>
+
+
+
+
+
+
+
+    <input type= "submit" value= "Отправить" class="btn btn-success" />
+
+</form>

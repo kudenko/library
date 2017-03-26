@@ -12,4 +12,33 @@
             }
             return false;
         }
+
+        public function save($data){
+            if( !(($data['password'])) || !(($data['login'])) || !(($data['email'])) ){
+
+                echo "dsads";
+                return false;
+            }
+
+            $login = $this->db->escape($data['login']);
+            $password = $this->db->escape($data['password']);
+            $password = md5(Config::get('salt') . $password);
+            $email = $this->db->escape($data['email']);
+            $role = $this->db->escape($data['role']);
+            $is_active = isset($data['is_active']) ? 1 : 0;
+
+            $sql = "
+                insert into users
+                set login = '{$login}',
+                    password = '{$password}',
+                    email = '{$email}',
+                    role = '{$role}',
+                    is_active = '{$is_active}'
+                ";
+
+            return $this->db->query($sql);
+
+
+
+        }
     }
