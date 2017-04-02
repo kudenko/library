@@ -126,3 +126,33 @@ margin-right: auto;
      margin-right: 1000px;
 
  }
+
+ .page404{
+     background: url(../image/404.jpg) 100% 100% no-repeat;
+     width:     600px;
+     height:    400px;
+     background-color: grey;
+     color:     black;
+     background-size: 100%;
+     background-position-y: center;
+     background-position: center;
+ }
+
+ .page404>p{
+     padding:85px;
+     padding-top:100px;
+     text-align: center;
+     font-size: 22px;
+     font-weight: bold;
+ }
+
+.page404>h1{
+    padding:35px;
+    padding-top:115px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+

@@ -141,13 +141,10 @@
             }
 
         }
-
-
-
-
-
-
-
     }
+
+    public function page404(){
+
+}
 
     }
