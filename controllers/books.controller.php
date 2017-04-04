@@ -60,9 +60,9 @@
 
                 $result = $this->model->save($_POST, $id);
                 if ($result) {
-                    Session::setFlash("Page was saved");
+                    Session::setFlash("Book was saved");
                 } else {
-                    Session::setFlash("Page did't saved");
+                    Session::setFlash("Book did't saved");
                 }
                 //Router::redirect('/admin/books');
             }

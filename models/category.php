@@ -9,7 +9,7 @@
         }
 
         public function getByAlias($alias){
-            $sql = "select * from books where category = $alias";
+            $sql = "select * from books where category = $alias AND is_published = 1" ;
             //echo ('working ');
             return $this->db->query($sql);
         }
