@@ -2,17 +2,20 @@
 <table class="table table-stripped" style="width: 100%;">
     <tr>
         <td style="width: 5%;">id</td>
-        <td style="width: 10%;">Name</td>
+        <td style="width: 10%;">Название</td>
+        <td style="width: 10%;">Вес</td>
 
     </tr>
     <?php foreach($data as $item){ ?>
     <tr>
         <td><?=$item['category_id']?></td>
         <td><?=$item['category']?></td>
+        <td><?=$item['weight']?></td>
         <td align="right"><a href="/admin/categories/edit/<?= $item['category_id'] ?>"><button class="btn btn-sm btn-primary">
             Edit</button></a></td>
         <td><a href="/admin/categories/delete/<?= $item['category_id'] ?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">
             Delete</button></a></td>
+
     </tr>
     <?php }?>
 

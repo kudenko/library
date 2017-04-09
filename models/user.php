@@ -13,6 +13,21 @@
             return false;
         }
 
+        public function getByEmail($email){
+            $login = $this->db->escape($email);
+            $sql = "
+                select * from users where email = '{$email}' limit 1
+            ";
+            $result = $this->db->query($sql);
+            if(isset($result[0])){
+                return $result[0];
+            }
+            return false;
+        }
+
+
+
+
         public function save($data){
             if( !(($data['password'])) || !(($data['login'])) || !(($data['email'])) ){
 

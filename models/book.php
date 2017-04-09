@@ -33,10 +33,12 @@ class Book extends Model{
     public function save($data, $id = null){
         if( !(($data['alias'])) || !(($data['title'])) || !(($data['description']))
             || !(($data['author']))){
+            echo 'dsjdhkasdaskhdjasj';
             return false;
         }
 
         $id = (int)$id;
+        var_dump ($id);
 
 
         $alias = $this->db->escape($data['alias']);
@@ -47,18 +49,27 @@ class Book extends Model{
         $category = (int)($this->db->escape($data['category']));
        //$additional_category = $this->escape($data['$additional_category']);
         $add_date = date('Y-m-d H:i:s');
-        if($_FILES['book']['name']) {
-            $file_name = $this->db->escape($_FILES['book']['name']);
-        }else $file_name = $data['book2'];
+
+
+       if($_FILES['book']['name']) {
+            $file_name = $data['book_path'];
+        }else $file_name = $data['book_path2'];
         if($_FILES['image']['name']) {
-            $picture_path = $this->db->escape($_FILES['image']['name']);
-        }else $picture_path = $data['image2'];
+            $picture_path = $data['image_path'];
+        }else $picture_path = $data['image_path2'];
 
 
         //var_dump($data);
-        if(!$id){   //add new record
-            $sql = "
-                insert into books
+         //add new record
+
+                if($id){
+                $sql = "update ";
+                    }else{
+                    $sql = "insert into ";
+                }
+
+                $sql .="
+                books
                 set alias = '{$alias}',
                     title = '{$title}',
                     description = '{$description}', 
@@ -68,23 +79,14 @@ class Book extends Model{
                     add_date = '{$add_date}',
                     file_name = '{$file_name}',
                     picture_path =  '{$picture_path}'
+                    
                 ";
-            //var_dump($message);
-        }else{  //update existing record
-            $sql = "
-                update  books
-                set alias = '{$alias}',
-                    title = '{$title}',
-                    description = '{$description}', 
-                    is_published = '{$is_published}',
-                    category = '{$category}',
-                    author = '{$author}',              
-                    file_name = '{$file_name}',
-                    picture_path =  '{$picture_path}'
-                where id = '{$id}'
-                ";
-        }
-        return $this->db->query($sql);
+                if($id){
+                    $sql .= "where id = '{$id}'";
+                }
+
+var_dump($sql);
+                return $this->db->query($sql);
     }
 
     public function delete($id){

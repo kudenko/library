@@ -3,7 +3,7 @@
     class Category extends Model{
 
         public function getList(){
-            $sql = "select * from book_categories";
+            $sql = "select * from book_categories ORDER BY `weight` DESC ";
             //echo ('working ');
             return $this->db->query($sql);
         }
@@ -25,24 +25,29 @@
             if( !($data['category']) ){
                 return false;
             }
-
             $id = (int)$id;
+            $weight = (int) $data['weight'];
+            var_dump($id);
+
 
             $category = $this->db->escape($data['category']);
           //  var_dump($category);
-            if(!$id){   //add new record
-                $sql = "
-                insert into book_categories
-                set category = '{$category}'
-                
-                ";
-                //var_dump($message);
-            }else{  //update existing record
-                $sql = "
-                update  book_categories
-                set category = '{$category}'
-                where category_id = '{$id}'
-                ";
+
+
+
+
+            if($id){
+                $sql = "update ";
+            }else{
+                $sql = "insert into ";
+            }
+
+            $sql .="
+                book_categories
+                set category = '{$category}',
+                weight = '{$weight}'";
+            if($id){
+                $sql .= "where category_id = '{$id}'";
             }
 
             return $this->db->query($sql);

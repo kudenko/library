@@ -26,7 +26,20 @@
 
         public function registration()
         {
+
+
             if (isset($_POST['login']) && isset($_POST['password']) && isset($_POST['email'])) {
+
+            if($this->model->getByLogin($_POST['login'])){
+                Session::setFlash('Такое имя уже используется. Пожалуйста, измените имя');
+                return;
+            }
+
+            if($this->model->getByEmail($_POST['email'])){
+                Session::setFlash('Такой емейл уже используется. Пожалуйста, измените емейл');
+                    return;
+            }
+
                 if ($_POST['password'] == $_POST['rep_pass']) {
 
                     if($this->model->save($_POST)) {
@@ -41,6 +54,7 @@
                 }else{
                     Session::setFlash('Пароли не совпадают');
                 }
+
 
             }else{
                 Session::setFlash('Все поля при регистрации должны быть заполнены');

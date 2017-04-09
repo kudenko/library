@@ -42,32 +42,52 @@
 
     public function admin_edit()
 
-    {
-       // var_dump($_FILES);
-        $this->data['categories'] = $this->model->getCategories();
 
+    {
+        // var_dump($_FILES);
+        $this->data['categories'] = $this->model->getCategories();
         $uploaddirPicture = Config::get('root') . Config::get('images');
         $uploaddirBook = Config::get('root') . Config::get('books');
-        if(isset($_FILES['book']) && isset($_FILES['image'])){
+        //$dir = '/home/grey/hometask/php-academy/homeworks/functions_forms_tasks/6/gallery';
+
+
+
+
+        if(isset($_FILES['book']) && isset($_FILES['image'])) {
+            $image_path = time() . $_FILES['image']['name'];
+            $book_path = time() . $_FILES['book']['name'];
+
             move_uploaded_file($_FILES['book']['tmp_name'], $uploaddirBook .
-                $_FILES['book']['name']);
+                $book_path);
             move_uploaded_file($_FILES['image']['tmp_name'], $uploaddirPicture .
-                $_FILES['image']['name']);
+                $image_path);
+            if ($_FILES['book']['size'] != 0) {
+                $_POST['book_path'] = $book_path;
+            }
+            if($_FILES['image']['size'] != 0) {
+                $_POST['image_path'] = $image_path;
 
+            }
+        }
             if ($_POST) {
-                // var_dump($_POST);
-                $id = isset($_POST['id']) ? $_POST['id'] : null;
+            //echo "<pre>";
+            //var_dump($_POST);
+                if(isset($_POST['image_path']))
+                {$_POST['image_path'] = $image_path;}
 
-                $result = $this->model->save($_POST, $id);
-                if ($result) {
-                    Session::setFlash("Book was saved");
-                } else {
-                    Session::setFlash("Book did't saved");
+                if(isset($_POST['book_path']))
+                {$_POST['book_path'] = $book_path;}
+                $id = isset($_POST['id']) ? $_POST['id'] : null;
+                echo '------------------';
+
+               echo 'this'; var_dump($id);
+                echo '------------------';
+                if ($this->model->save($_POST, $id)) {
+                        Session::setFlash('Спасибо, книга изменена успешно.');
                 }
-                //Router::redirect('/admin/books');
             }
 
-        }
+
 
 
 
@@ -76,7 +96,7 @@
             $this->data['book'] = $this->model->getById($this->params[0]);
         } else {
             Session::setFlash('Wrong page id');
-            Router::redirect('/admin/books/');
+           // Router::redirect('/admin/books/');
         }
     }
 
@@ -87,18 +107,29 @@
         $uploaddirBook = Config::get('root') . Config::get('books');
         //$dir = '/home/grey/hometask/php-academy/homeworks/functions_forms_tasks/6/gallery';
 
-        if(isset($_FILES['book']) && isset($_FILES['image'])){
-            move_uploaded_file($_FILES['book']['tmp_name'], $uploaddirBook .
-                $_FILES['book']['name']);
-            move_uploaded_file($_FILES['image']['tmp_name'], $uploaddirPicture .
-                $_FILES['image']['name']);
+        if(!(isset($_POST['alias']) || isset($_POST['title']) || isset($_POST['description'])
+            || isset($_POST['author']))){
+            Session::setFlash("Все поля обязательны для заполнения");
+            return;
+        }
 
-            if($_POST){
-                if($this->model->save($_POST)){
-                    Session::setFlash('Thank you, your book was sent successfully');
+        if(isset($_FILES['book']) && isset($_FILES['image'])){
+            $image_path =   time() . $_FILES['image']['name'];
+            $book_path =  time() . $_FILES['book']['name'] ;
+
+            move_uploaded_file($_FILES['book']['tmp_name'], $uploaddirBook .
+                $book_path );
+            move_uploaded_file($_FILES['image']['tmp_name'], $uploaddirPicture .
+                $image_path);
+            if(($_FILES['book']['size'] != 0) && $_FILES['image']['size'] != 0) {
+                $_POST['image_path'] = $image_path;
+                $_POST['book_path'] = $book_path;
+                if ($_POST) {
+                    if ($this->model->save($_POST)) {
+                        Session::setFlash('Спасибо, книга загружена успешно. Она появится на сайте после проверки.');
+                    }
                 }
             }
-        }else{//echo 'error from books controller ';
 
         }
     }
@@ -125,12 +156,24 @@
     $uploaddirBook = Config::get('root') . Config::get('books');
     //$dir = '/home/grey/hometask/php-academy/homeworks/functions_forms_tasks/6/gallery';
 
+        if(!(isset($_POST['alias']) || isset($_POST['title']) || isset($_POST['description'])
+            || isset($_POST['author']))){
+            Session::setFlash("Все поля обязательны для заполнения");
+            return;
+        }
+
+
         if(isset($_FILES['book']) && isset($_FILES['image'])){
+            $image_path =   time() . $_FILES['image']['name'];
+            $book_path =  time() . $_FILES['book']['name'] ;
+
             move_uploaded_file($_FILES['book']['tmp_name'], $uploaddirBook .
-                $_FILES['book']['name']);
+                $book_path );
             move_uploaded_file($_FILES['image']['tmp_name'], $uploaddirPicture .
-                $_FILES['image']['name']);
+                $image_path);
             if(($_FILES['book']['size'] != 0) && $_FILES['image']['size'] != 0) {
+                $_POST['image_path'] = $image_path;
+                $_POST['book_path'] = $book_path;
                 if ($_POST) {
                     if ($this->model->save($_POST)) {
                         Session::setFlash('Спасибо, книга загружена успешно. Она появится на сайте после проверки.');

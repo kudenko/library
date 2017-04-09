@@ -1,7 +1,14 @@
-<h3>Регистрация пользователя</h3>
+<?php
+                if (Session::get('role') == 'admin'){ ?>
+<h3>Регистрация админ-пользователя</h3>
+<?php }
+else{echo "<h3>Регистрация пользователя</h3>";}
+
+?>
+
 <form method="post" enctype="multipart/form-data" action="">
 
-    <input type="hidden"  name="role" value="user"/>
+
     <input type="hidden"  name="is_active" value=1/>
 
 
@@ -26,6 +33,16 @@
         <label for="email">Укажите свой email</label>
         <input type="email" id="email" name="email" value="" class="form-control"/>
     </div>
+
+    <input type="hidden"  name="role" value="user"/>
+    <?php
+                if (Session::get('role') == 'admin'){ ?>
+    <input type="hidden"  name="role" value="admin"/>
+    <?php }
+
+
+
+?>
 
 
 

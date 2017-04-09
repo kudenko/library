@@ -1,1 +1,3 @@
 .idea/
+webroot/image/*
+webroot/uploads/*

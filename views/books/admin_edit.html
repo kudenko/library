@@ -1,7 +1,8 @@
-<h3>Редактирование книг</h3>
+<h3>Редактирование книгшы</h3>
 <form method="post" enctype="multipart/form-data" action="">
 
     <input type="hidden"  name="id" value="<?=$data['book']['id']?>"/>
+    <?php var_dump($data['book']['id']); ?>
 
 
 
@@ -48,7 +49,7 @@
 
 
 
-    <input type="hidden" name ="MAX_FILE_SIZE" value="99999999"/>
+    <input type="hidden" name ="MAX_FILE_SIZE" value="1048576"/>
 
     <p>Выберите изображение для замены:
         <input name="image" type="file"  class="btn btn-success" /></p>
@@ -61,7 +62,7 @@
         <?php
         $file = Config::get('books') . $data['book']['file_name'];
 
-        if(file_exists(Config::get('root') . $file)){
+        if($data['book']['file_name'] != ''){
         echo" <p><a href=$file
                     download>Скачать книгу</a></p>" ;
         }
@@ -72,9 +73,9 @@
     <p>Выберите книгу для замены:
         <input name="book" type="file"  class="btn btn-success" /></p>
 
-    <input type="hidden"  name="book2" value="<?=$data['book']['file_name']?>"/>
-    <input type="hidden"  name="image2" value="<?=$data['book']['picture_path']?>"/>
-
+    <input type="hidden"  name="book_path2" value="<?=$data['book']['file_name']?>"/>
+    <input type="hidden"  name="image_path2" value="<?=$data['book']['picture_path']?>"/>
+    <?php  var_dump($data['book']['file_name']);   ?>
     <div class="form-group">
         <label for="is_published">Publish</label>
         <input type="checkbox" id="is_published" name="is_published" <?php if( $data['book']['is_published'] ) { ?>checked="checked"<?php } ?>/>

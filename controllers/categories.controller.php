@@ -32,11 +32,11 @@
 
         public function admin_edit(){
 
-            $params = App::getRouter()->getParams();
+            //$params = App::getRouter()->getParams();
 
 
             if ($_POST) {
-                // var_dump($_POST);
+                 var_dump($_POST);
                 $id = isset($_POST['id']) ? $_POST['id'] : null;
 
                 $result = $this->model->save($_POST, $id);
@@ -45,7 +45,7 @@
                 } else {
                     Session::setFlash("Category did't saved");
                 }
-                Router::redirect('/admin/categories');
+               // Router::redirect('/admin/categories');
             }
 
                 if (isset($this->params[0])) {
