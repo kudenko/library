@@ -78,12 +78,9 @@
                 if(isset($_POST['book_path']))
                 {$_POST['book_path'] = $book_path;}
                 $id = isset($_POST['id']) ? $_POST['id'] : null;
-                echo '------------------';
-
-               echo 'this'; var_dump($id);
-                echo '------------------';
+                
                 if ($this->model->save($_POST, $id)) {
-                        Session::setFlash('Спасибо, книга изменена успешно.');
+                    Session::setFlash('Спасибо, книга изменена успешно.');
                 }
             }
 

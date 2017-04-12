@@ -33,7 +33,7 @@ class Book extends Model{
     public function save($data, $id = null){
         if( !(($data['alias'])) || !(($data['title'])) || !(($data['description']))
             || !(($data['author']))){
-            echo 'dsjdhkasdaskhdjasj';
+
             return false;
         }
 
