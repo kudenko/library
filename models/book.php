@@ -38,7 +38,6 @@ class Book extends Model{
         }
 
         $id = (int)$id;
-        var_dump ($id);
 
 
         $alias = $this->db->escape($data['alias']);
@@ -49,7 +48,7 @@ class Book extends Model{
         $category = (int)($this->db->escape($data['category']));
        //$additional_category = $this->escape($data['$additional_category']);
         $add_date = date('Y-m-d H:i:s');
-
+        $is_deleted = isset($data['is_deleted']) ? 1 : 0;
 
        if($_FILES['book']['name']) {
             $file_name = $data['book_path'];
@@ -78,14 +77,15 @@ class Book extends Model{
                     author = '{$author}',
                     add_date = '{$add_date}',
                     file_name = '{$file_name}',
-                    picture_path =  '{$picture_path}'
+                    picture_path =  '{$picture_path}',
+                    is_deleted = '{$is_deleted}'
                     
                 ";
                 if($id){
                     $sql .= "where id = '{$id}'";
                 }
 
-var_dump($sql);
+
                 return $this->db->query($sql);
     }
 

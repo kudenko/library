@@ -1,5 +1,6 @@
 <h3>Страница добавления/редактирования книг</h3></br>
 <table class="table table-straped" style="width: 400px;">
+    <h4>Книги для редактирования</h4>
 <?php
     echo"
     <td>Название книги</td><td>Ссылка на файл</td>
@@ -7,7 +8,9 @@
     foreach ($data['books'] as $book_data) {?>
 
     <tr>
+        <?php if(!($book_data['is_deleted'])){ ?>
         <td><b><?= $book_data['title'] ?></b></td>
+
         <td><?php
         $file = Config::get('books') . $book_data['file_name'];
 
@@ -17,12 +20,50 @@
             }
 
             ?></td>
+
         <td align="right">
             <a href="/admin/books/edit/<?= $book_data['id'] ?>"><button class="btn btn-sm btn-primary">
                 Edit</button></a>
             <a href="/admin/books/delete/<?= $book_data['id'] ?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">
                 Delete</button></a>
         </td>
+        <?php } ?>
+    </tr>
+
+    <?php } ?>
+
+
+</table>
+
+<table class="table table-straped" style="width: 400px;">
+    <h4>Книги для удаления</h4>
+    <?php
+    echo"
+    <td>Название книги</td><td>Ссылка на файл</td>
+    ";
+    foreach ($data['books'] as $book_data) {?>
+
+    <tr>
+        <?php if($book_data['is_deleted']){ ?>
+        <td><b><?= $book_data['title'] ?></b></td>
+
+        <td><?php
+        $file = Config::get('books') . $book_data['file_name'];
+
+        if($book_data['file_name'] != ''){
+        echo" <p><a href=$file
+                    download>Скачать книгу</a></p>" ;
+            }
+
+            ?></td>
+
+        <td align="right">
+            <a href="/admin/books/edit/<?= $book_data['id'] ?>"><button class="btn btn-sm btn-primary">
+                Edit</button></a>
+            <a href="/admin/books/delete/<?= $book_data['id'] ?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">
+                Delete</button></a>
+        </td>
+        <?php } ?>
     </tr>
 
     <?php } ?>

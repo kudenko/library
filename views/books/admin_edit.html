@@ -1,9 +1,7 @@
-<h3>Редактирование книгшы</h3>
+<h3>Редактирование книги</h3>
 <form method="post" enctype="multipart/form-data" action="">
 
     <input type="hidden"  name="id" value="<?=$data['book']['id']?>"/>
-    <?php var_dump($data['book']['id']); ?>
-
 
 
     <div class="form-group">
@@ -75,10 +73,15 @@
 
     <input type="hidden"  name="book_path2" value="<?=$data['book']['file_name']?>"/>
     <input type="hidden"  name="image_path2" value="<?=$data['book']['picture_path']?>"/>
-    <?php  var_dump($data['book']['file_name']);   ?>
+
     <div class="form-group">
-        <label for="is_published">Publish</label>
+        <label for="is_published">Опубликовать</label>
         <input type="checkbox" id="is_published" name="is_published" <?php if( $data['book']['is_published'] ) { ?>checked="checked"<?php } ?>/>
     </div>
+    <div class="form-group">
+        <label for="is_deleted">На удаление</label>
+        <input type="checkbox" id="is_deleted" name="is_deleted" <?php if( $data['book']['is_deleted'] ) { ?>checked="checked"<?php } ?>/>
+    </div>
+
     <input type="submit" class="btn btn-success" />
 </form>
