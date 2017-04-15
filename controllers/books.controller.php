@@ -44,11 +44,11 @@
 
 
     {
-        // var_dump($_FILES);
+
         $this->data['categories'] = $this->model->getCategories();
         $uploaddirPicture = Config::get('root') . Config::get('images');
         $uploaddirBook = Config::get('root') . Config::get('books');
-        //$dir = '/home/grey/hometask/php-academy/homeworks/functions_forms_tasks/6/gallery';
+
 
 
 
@@ -78,7 +78,7 @@
                 if(isset($_POST['book_path']))
                 {$_POST['book_path'] = $book_path;}
                 $id = isset($_POST['id']) ? $_POST['id'] : null;
-                
+
                 if ($this->model->save($_POST, $id)) {
                     Session::setFlash('Спасибо, книга изменена успешно.');
                 }

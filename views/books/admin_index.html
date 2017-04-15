@@ -24,8 +24,12 @@
         <td align="right">
             <a href="/admin/books/edit/<?= $book_data['id'] ?>"><button class="btn btn-sm btn-primary">
                 Edit</button></a>
-            <a href="/admin/books/delete/<?= $book_data['id'] ?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">
+            <button class="del btn btn-sm btn-warning" data-id="<?= $book_data['id'] ?>">
                 Delete</button></a>
+
+
+
+
         </td>
         <?php } ?>
     </tr>
@@ -58,10 +62,11 @@
             ?></td>
 
         <td align="right">
-            <a href="/admin/books/edit/<?= $book_data['id'] ?>"><button class="btn btn-sm btn-primary">
+            <a href="/admin/books/edit/<?= $book_data['id'] ?>"><button class="del btn btn-sm btn-primary">
                 Edit</button></a>
-            <a href="/admin/books/delete/<?= $book_data['id'] ?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">
-                Delete</button></a>
+                <button class="del btn btn-sm btn-warning" data-id="<?= $book_data['id'] ?>">
+
+            Delete</button></a>
         </td>
         <?php } ?>
     </tr>

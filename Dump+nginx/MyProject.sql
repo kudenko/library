@@ -63,7 +63,7 @@ CREATE TABLE `books` (
   PRIMARY KEY (`id`,`category`),
   KEY `fk_books_1_idx` (`category`),
   CONSTRAINT `fk_books_1` FOREIGN KEY (`category`) REFERENCES `book_categories` (`category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (2,' 1491745437','те','тест','\r\n\r\n',1,1,'vxcv','2017-04-09 21:00:38','tickets.pdf','12.png',NULL),(4,' 1491745437','5444','5444','3335\r\n\r\n\r\n\r\n\r\n\r\n',1,1,NULL,'2017-04-12 23:31:52','1491773761tickets.pdf','1492029112million.jpg',NULL),(153,' 1492029294','вв','вв','\r\n            вв',0,1,NULL,'2017-04-12 23:37:32','1492029452Bulgakov.fb2','149202945212.png',1),(154,' 1492029294','вв','вв','\r\n            вв',0,1,NULL,'2017-04-12 23:44:35','1492029875Bulgakov.fb2','149202987512.png',1);
+INSERT INTO `books` VALUES (153,' 1492029294','вв','вв','\r\n            вв',0,1,NULL,'2017-04-12 23:37:32','1492029452Bulgakov.fb2','149202945212.png',1),(154,' 1492029294','вв','вв','\r\n            вв',0,1,NULL,'2017-04-12 23:44:35','1492029875Bulgakov.fb2','149202987512.png',1),(155,' 1492029294','вв','вв','\r\n            вв',0,1,NULL,'2017-04-12 23:37:32','1492029452Bulgakov.fb2','149202945212.png',0),(156,' 1492029294','вв','вв','\r\n            вв',0,1,NULL,'2017-04-12 23:37:32','1492029452Bulgakov.fb2','149202945212.png',0),(157,' 1492029294','вв','вв','\r\n            вв',0,1,NULL,'2017-04-12 23:37:32','1492029452Bulgakov.fb2','149202945212.png',0);
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,7 +99,6 @@ CREATE TABLE `books_categories` (
 
 LOCK TABLES `books_categories` WRITE;
 /*!40000 ALTER TABLE `books_categories` DISABLE KEYS */;
-INSERT INTO `books_categories` VALUES (2,2);
 /*!40000 ALTER TABLE `books_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-12 23:52:06
+-- Dump completed on 2017-04-14 10:19:50
