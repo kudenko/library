@@ -101,11 +101,9 @@ padding-left: 150px;
 .book-picture{
 margin-right: auto;
     text-align: right;
-
-
 }
 .page-book{
-    min-height: 700px;
+    min-height: 300px;
 }
 
  img{
@@ -154,5 +152,8 @@ margin-right: auto;
     font-weight: bold;
 }
 
-
+.comments{
+    margin-right: 80px;
+    text-align: center;
+}
 

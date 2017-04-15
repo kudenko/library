@@ -42,7 +42,7 @@ class Book extends Model{
 
         $alias = $this->db->escape($data['alias']);
         $title = $this->db->escape($data['title']);
-        $description = trim($this->db->escape($data['description']), " \t\n\r\0\x0B");
+        $description = trim($this->db->escape($data['description']));
         $is_published = isset($data['is_published']) ? 1 : 0;
         $author = $this->db->escape($data['author']);
         $category = (int)($this->db->escape($data['category']));
@@ -96,6 +96,12 @@ class Book extends Model{
                 where id = '{$id}'
             ";
 
+        return $this->db->query($sql);
+    }
+
+    public function getBookComment($id){
+        $id = (int)$id;
+        $sql = "select * from comments WHERE book_id = '{$id}'";
         return $this->db->query($sql);
     }
 

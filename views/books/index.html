@@ -18,7 +18,7 @@ if($book_data['is_published']){
     <div class="books-main" style="margin-top: 20px;">
     <?php if($book_data['is_published'] == 1){ ?>
     <p>Автор: <?=$book_data['author']?></p>
-    <p>Книга: <a href = "/books/view/<?=$book_data['alias']?>"><?=$book_data['title']?></a></p>
+    <p>Книга: <a href = "/books/view/<?=$book_data['id']?>"><?=$book_data['title']?></a></p>
 
 
        <?php foreach ($data['categories'] as $data_category){

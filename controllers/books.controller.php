@@ -28,8 +28,9 @@
         $params = App::getRouter()->getParams();
 
         if (isset($params[0])) {
-            $alias = strtolower($params[0]);
-            $this->data['book'] = $this->model->getByAlias($alias);
+            $id = (int)($params[0]);
+            $this->data['book'] = $this->model->getById($id);
+            $this->data['comment'] = $this->model->getBookComment($id);
         }else echo "this text is from pages.controller. view function";
 
         $this->data['categories'] = $this->model->getCategories();
