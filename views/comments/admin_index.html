@@ -1,0 +1,24 @@
+<h3>Редактирование сообщений</h3>
+<table class="table table-stripped" style="width: 100%;">
+
+    <tr>
+        <td style="width: 5%;">ID комментария</td>
+        <td style="width: 10%;">Пользователь</td>
+        <td style="width: 25%;">Дата</td>
+        <td style="width: 50%;">Сообщение</td>
+        <td style="width: 50%;">Удаление</td>
+
+    </tr>
+    <?php foreach($data['comments'] as $item){ ?>
+<tr>
+    <td><?=$item['comment_id']?></td>
+
+    <td><?=$item['user_name']?></td>
+    <td><?=$item['comment_add_day']?></td>
+    <td><?=$item['comment']?></td>
+    <td> <button class="delcomm btn btn-sm btn-warning" data-id="<?= $item['comment_id'] ?>">
+        Delete</button></a></td>
+
+</tr>
+    <?php }?>
+</table>

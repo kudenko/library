@@ -28,3 +28,15 @@ $(function(){
         }});
 
 });
+
+$(function(){
+
+    $('.delcomm').click(function(){
+        var commId = $(this).attr('data-id');
+        if(confirm('Удалить выбранный элемент? ')){
+            $.get("/admin/comments/delete/"+ commId, function() {
+                location.reload();
+            })
+        }});
+
+});

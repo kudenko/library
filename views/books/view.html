@@ -1,4 +1,4 @@
-<?php var_dump($data['comment']) ?>
+
 <div class="book page-book">
     <div class="books-main" style="margin-top: 20px;">
         <?php $desc = nl2br($data['book']['description']); ?>
@@ -72,7 +72,7 @@
 </br>
 <form action="/comments/sendComment/" method="post">
     <input type="hidden"  name="book_id" value="<?=$data['book']['id']?>"/>
-    <input type="hidden"  name="date" value="<?=date('y-m-d H:m:s');?>"/>
+    <input type="hidden"  name="date" value="<?=date('y-m-d H:i:s');?>"/>
 
    <?php
 

@@ -38,4 +38,18 @@
 
         }
 
+        public function getList(){
+            $sql = "select * from comments";
+            return $this->db->query($sql);
+        }
+
+        public function delete($id){
+            $id = (int)$id;
+            $sql = "
+                delete from comments
+                where comment_id = '{$id}'
+            ";
+
+            return $this->db->query($sql);
+        }
     }
