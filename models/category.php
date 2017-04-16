@@ -27,7 +27,7 @@
             }
             $id = (int)$id;
             $weight = (int) $data['weight'];
-            var_dump($id);
+
 
 
             $category = $this->db->escape($data['category']);

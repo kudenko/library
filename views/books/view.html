@@ -1,6 +1,7 @@
 <?php var_dump($data['comment']) ?>
 <div class="book page-book">
     <div class="books-main" style="margin-top: 20px;">
+        <?php $desc = nl2br($data['book']['description']); ?>
 
         <p>Автор книги: <b><?=$data['book']['author']?></b></p>
         <p>Название книги: <b><?=$data['book']['title']?></b></p>
@@ -12,7 +13,7 @@
         <?php } ?>
         <?php } ?>
 
-        <p>Описание: <b><?=$data['book']['description']?></b></p>
+        <p>Описание: <b><?=$desc?></b></p>
         <p>Дата загрузки: <b><?=$data['book']['add_date']?></b></p>
         <div>
             <p>
@@ -36,15 +37,59 @@
 
 
 
-
+<div class="bottom">
+</div>
     </div>
 <div class = comments>
-    <p> Тестовый комментарий</p>
+    <h4>Комментарии:</h4>
+
+
+
+    <?php foreach ($data['comment'] as $data_comment){
+    $comment = nl2br($data_comment['comment']);
+    echo("<div class='inner-comments'>");
+    if($data_comment['user_name'] != ''){
+
+       echo ("<p>Автор:  " . $data_comment['user_name']) . "</p>";
+    }else{
+    echo ("<p>Автор: Гость </p>");
+    }
+    echo ("<p>Дата публикации:  " . $data_comment['comment_add_day']) . "</p>";
+    echo("<div class='single-comment'>");
+    echo ("<p>" . $comment . "</p>");
+    echo("</div>");
+
+    echo("</div>");
+
+    }
+
+
+?>
+
 
 
 </div>
-    </div>
+</br>
+<form action="/comments/sendComment/" method="post">
+    <input type="hidden"  name="book_id" value="<?=$data['book']['id']?>"/>
+    <input type="hidden"  name="date" value="<?=date('y-m-d H:m:s');?>"/>
 
+   <?php
+
+   if(isset($_SESSION['login']))
+   {
+    $user_name = $_SESSION['login']; ?>
+    <input type="hidden"  name="user_name" value="<?=$user_name;?>"/>
+<?php
+}
+?>
+
+    <textarea name="comment" class="form-control" placeholder="Оставьте свой комментарий"></textarea>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Отправить</button>
+
+</form>
+
+    </div>
 
 
    <?// Удали коммент, чтобы увидеть имя файла php echo $data['book']['file_name']; ?>

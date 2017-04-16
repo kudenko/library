@@ -28,8 +28,8 @@ if($book_data['is_published']){
         <?php } ?>
         <?php } ?>
 
-
-    <p>Описание: <?=$book_data['description']?></p>
+   <?php $desc = nl2br($book_data['description']); ?>
+    <p>Описание: <?=$desc?></p>
     <p>Дата загрузки: <?=$book_data['add_date']?></p>
     </div>
 
@@ -37,7 +37,8 @@ if($book_data['is_published']){
     <img src="<?=Config::get('images') . $book_data['picture_path']?>"
          alt="Картинка книги <?=$book_data['title']?> ">
     </div>
-
+    <div class="bottom">
+    </div>
 </div>
 <?php } ?>
 
