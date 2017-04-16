@@ -40,3 +40,17 @@ $(function(){
         }});
 
 });
+
+$(function(){
+
+    $('.down').click(function(){
+        var book_id = $(this).attr('data-id');
+        var file = $(this).attr('data-file');
+            $.get("/books/getBook/" + book_id, function() {
+                document.location.href = file ;
+
+            })
+        });
+
+});
+

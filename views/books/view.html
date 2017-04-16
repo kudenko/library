@@ -15,17 +15,20 @@
 
         <p>Описание: <b><?=$desc?></b></p>
         <p>Дата загрузки: <b><?=$data['book']['add_date']?></b></p>
+        <p>Количество скачиваний: <?=$data['book']['download']?></p>
+
         <div>
             <p>
                 <?php
         $file = Config::get('books') . $data['book']['file_name'];
 
-        if($data['book']['file_name'] != ''){
-        echo" <p><a href=$file
-                    download>Скачать книгу</a></p>" ;
-            }
+
 
             ?>
+
+            <button class="down btn btn btn-primary" data-file="<?= $file ?>" data-id="<?=$data['book']['id']?>">Скачать книгу</button>
+
+
         </div>
     </div>
 

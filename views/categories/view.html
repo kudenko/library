@@ -18,15 +18,9 @@
         <tr>
             <td><?=$item['title']?></td>
             <td><?=$item['author']?></td>
-            <td><?php
-        $file = Config::get('books') . $item['file_name'];
-       // var_dump($item['file_name']);
-        if($item['file_name'] != ''){
-        echo" <p><a href=$file
-                    download>Скачать книгу</a></p>" ;
-                }
-
-                ?></td>
+            <?php $file = '/uploads/' . $item['file_name'] ?>
+            <td><button class="down btn btn btn-primary" data-file="<?= $file ?>" data-id="<?=$item['id']?>">Скачать книгу</button>
+            </td>
         </tr>
         <?php }?>
     </table>

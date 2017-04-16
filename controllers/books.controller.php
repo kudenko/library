@@ -10,7 +10,7 @@
         public function index()
         {
 
-            $this->data['books'] = $this->model->getList();
+            $this->data['books'] = $this->model->getDown();
             $this->data['categories'] = $this->model->getCategories();
 
         }
@@ -225,5 +225,12 @@
     public function page404(){
 
 }
+    public function getBook(){
+        if (isset($this->params[0])) {
+            $this->model->countDownload($this->params[0]);
+        }
+
+
+    }
 
     }

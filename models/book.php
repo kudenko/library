@@ -11,6 +11,18 @@ class Book extends Model{
         return $this->db->query($sql);
     }
 
+    public function getDown($only_published = false){
+        $sql = "select * from books where 1";
+        //echo ('working ');
+        if($only_published){
+            $sql .= " and is_published = 1";
+        }
+        $sql .=" ORDER BY `download` DESC";
+
+        return $this->db->query($sql);
+    }
+
+
     public function getCategories(){
         $sql = "select * from book_categories";
         return $this->db->query($sql);
@@ -101,8 +113,15 @@ class Book extends Model{
 
     public function getBookComment($id){
         $id = (int)$id;
-        $sql = "select * from comments WHERE book_id = '{$id}'";
+        $sql = "SELECT * FROM comments WHERE book_id = '{$id}'";
         return $this->db->query($sql);
+    }
+
+    public function countDownload($id){
+        $id = (int)$id;
+        $sql = "UPDATE `books` SET `download` = `download` + 1 WHERE id = '{$id}'";
+        $this->db->query($sql);
+
     }
 
 }
