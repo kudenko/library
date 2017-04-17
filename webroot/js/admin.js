@@ -54,3 +54,21 @@ $(function(){
 
 });
 
+$(function(){
+$('.like').click(function(){
+    $.post("/likes/like",
+        {
+            book_id: $(this).attr('data-id'),
+            user_name: $(this).attr('data-name')
+        },
+        function(){
+            //location.reload();
+        })
+        });
+});
+
+
+
+
+
+

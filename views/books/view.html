@@ -27,8 +27,16 @@
             ?>
 
             <button class="down btn btn btn-primary" data-file="<?= $file ?>" data-id="<?=$data['book']['id']?>">Скачать книгу</button>
+            <?php
+
+                if(Session::get('login')){
+                $name = Session::get('login');
+                ?>
 
 
+
+                <p><button class="like btn btn-primary" data-name="<?= $name ?>" data-id="<?=$data['book']['id']?>">like</button></p>
+               <?php } ?>
         </div>
     </div>
 

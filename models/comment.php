@@ -4,7 +4,7 @@
     class Comment extends Model{
 
         public function save($data, $id = null){
-            var_dump($data);
+
             if( !($data['comment']) ){
                 return false;
             }
