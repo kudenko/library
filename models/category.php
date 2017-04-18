@@ -64,4 +64,13 @@
             return $this->db->query($sql);
         }
 
+        public function getLikes($id){
+            $id = (int)$id;
+            $sql = "SELECT *,  l.SUMMLIKE FROM books  b left join(select book_id, sum(is_like) SUMMLIKE from likes
+            group by book_id) l on b.id = l.book_id where is_published = 1 AND category = '{$id}' ORDER BY l.SUMMLIKE DESC";
+
+
+            return $this->db->query($sql);
+        }
+
     }

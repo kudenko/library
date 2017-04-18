@@ -30,6 +30,15 @@
 
         }
 
+        public function likes(){
+            $params = App::getRouter()->getParams();
+            if (isset($params[0])) {
+                $alias = strtolower($params[0]);
+                $this->data['categories'] = $this->model->getLikes($alias);
+                $this->data['category']  = $this->model->getCategoryById($alias);
+            }else echo "this text is from pages.controller. view function";
+        }
+
         public function admin_edit(){
 
             //$params = App::getRouter()->getParams();
