@@ -10,6 +10,7 @@
         <tr>
             <td style="width: 5%;">Название книги</td>
             <td style="width: 10%;">Автор</td>
+            <td style="width: 10%;">Количество скачиваний</td>
             <td style="width: 10%;">Ссылка для скачивания</td>
 
 
@@ -18,6 +19,8 @@
         <tr>
             <td><?=$item['title']?></td>
             <td><?=$item['author']?></td>
+            <td><?=$item['download']?></td>
+
             <?php $file = '/uploads/' . $item['file_name'] ?>
             <td><button class="down btn btn btn-primary" data-file="<?= $file ?>" data-id="<?=$item['id']?>">Скачать книгу</button>
             </td>

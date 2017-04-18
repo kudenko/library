@@ -1,4 +1,3 @@
-
 <div class="book page-book">
     <div class="books-main" style="margin-top: 20px;">
         <?php $desc = nl2br($data['book']['description']); ?>
@@ -16,7 +15,7 @@
         <p>Описание: <b><?=$desc?></b></p>
         <p>Дата загрузки: <b><?=$data['book']['add_date']?></b></p>
         <p>Количество скачиваний: <?=$data['book']['download']?></p>
-
+        <p>Количество лайков: <?=$data['likes']['SUMMLIKE']?></p>
         <div>
             <p>
                 <?php

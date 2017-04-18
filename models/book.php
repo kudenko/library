@@ -123,5 +123,12 @@ class Book extends Model{
         $this->db->query($sql);
 
     }
+    public function getCountLikes($id){
+        $id = (int)($id);
+        $sql = "SELECT id, l.SUMMLIKE FROM books  b left join(select book_id, sum(is_like) SUMMLIKE from likes group by book_id) l on b.id = l.book_id where b.id = '{$id}';";
+        $result = $this->db->query($sql);
+        return isset($result[0]) ? $result[0] : null;
+
+    }
 
 }
