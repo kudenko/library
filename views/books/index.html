@@ -1,5 +1,4 @@
-
-
+<h6><a href="/books/likes">Отсортировать по лайкам</a></h6>
 <?php if( (Session::get('role') == '') ){
 
 echo('<p>Для загрузки книг нужно залогиниться</p>');
@@ -32,6 +31,7 @@ if($book_data['is_published']){
     <p>Описание: <?=$desc?></p>
     <p>Дата загрузки: <?=$book_data['add_date']?></p>
     <p>Количество скачиваний: <?=$book_data['download']?></p>
+    <p>Количество лайков: <?=$book_data['SUMMLIKE']?></p>
     </div>
 
     <div class="book-picture">

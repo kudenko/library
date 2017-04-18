@@ -62,7 +62,7 @@ $('.like').click(function(){
             user_name: $(this).attr('data-name')
         },
         function(){
-            //location.reload();
+            location.reload();
         })
         });
 });

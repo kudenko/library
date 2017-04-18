@@ -1,0 +1,46 @@
+<h6><a href="/">Отсортировать по количеству скачиваний</a></h6>
+<?php if( (Session::get('role') == '') ){
+
+echo('<p>Для загрузки книг нужно залогиниться</p>');
+}
+
+?>
+
+
+<?php foreach($data['books'] as $book_data) {
+if($book_data['is_published']){
+
+
+?>
+<div class="book">
+
+    <div class="books-main" style="margin-top: 20px;">
+        <?php if($book_data['is_published'] == 1){ ?>
+        <p>Автор: <?=$book_data['author']?></p>
+        <p>Книга: <a href = "/books/view/<?=$book_data['id']?>"><?=$book_data['title']?></a></p>
+
+
+        <?php foreach ($data['categories'] as $data_category){
+        if($book_data['category'] == $data_category['category_id']){
+        echo "<p>Категория: " . $data_category['category'] ?>
+
+        <?php } ?>
+        <?php } ?>
+
+        <?php $desc = nl2br($book_data['description']); ?>
+        <p>Описание: <?=$desc?></p>
+        <p>Дата загрузки: <?=$book_data['add_date']?></p>
+        <p>Количество скачиваний: <?=$book_data['download']?></p>
+        <p>Количество лайков: <?=$book_data['SUMMLIKE']?></p>
+    </div>
+
+    <div class="book-picture">
+        <img src="<?=Config::get('images') . $book_data['picture_path']?>"
+             alt="Картинка книги <?=$book_data['title']?> ">
+    </div>
+    <div class="bottom">
+    </div>
+</div>
+<?php } ?>
+
+<?php } }?>

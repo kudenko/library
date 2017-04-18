@@ -12,12 +12,23 @@ class Book extends Model{
     }
 
     public function getDown($only_published = false){
-        $sql = "select * from books where 1";
+        $sql = "SELECT *,  l.SUMMLIKE FROM books  b left join(select book_id, sum(is_like) SUMMLIKE from likes group by book_id) l on b.id = l.book_id where 1";
         //echo ('working ');
         if($only_published){
             $sql .= " and is_published = 1";
         }
         $sql .=" ORDER BY `download` DESC";
+
+        return $this->db->query($sql);
+    }
+
+    public function getLikes($only_published = false){
+        $sql = "SELECT *,  l.SUMMLIKE FROM books  b left join(select book_id, sum(is_like) SUMMLIKE from likes group by book_id) l on b.id = l.book_id where 1";
+        //echo ('working ');
+        if($only_published){
+            $sql .= " and is_published = 1";
+        }
+        $sql .=" ORDER BY l.SUMMLIKE DESC";
 
         return $this->db->query($sql);
     }

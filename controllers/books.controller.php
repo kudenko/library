@@ -234,4 +234,12 @@
 
     }
 
+    public function likes()
+    {
+
+        $this->data['books'] = $this->model->getLikes();
+        $this->data['categories'] = $this->model->getCategories();
+
+    }
+
     }

@@ -9,7 +9,7 @@
         }
 
         public function getByAlias($alias){
-            $sql = "SELECT * FROM book_categories  inner join books on book_categories.category_id = books.category where category_id = $alias ORDER BY books.download DESC" ;
+            $sql = "SELECT * FROM book_categories  inner join books on book_categories.category_id = books.category where category_id = $alias AND is_published = 1 ORDER BY books.download DESC" ;
             //echo ('working ');
             return $this->db->query($sql);
         }
