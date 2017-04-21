@@ -55,8 +55,50 @@
 
 
 
-        if(isset($_FILES['book']) && isset($_FILES['image'])) {
+        if(isset($_FILES['book'])) {
 
+
+
+            $book_path =  time() . $_FILES['book']['name'] ;
+
+            foreach (Config::get('blacklist') as $item){
+
+                if(preg_match("/$item\$/i", $_FILES['book']['name'])){
+                    Session::setFlash("Вы грузите не книгу!!!");
+                    Router::redirect('/admin/books/edit/' . $_POST['id'] );
+
+                    return;
+                }
+
+            }
+
+
+
+
+            if (($_FILES['book']['name'] != 0)) {
+
+                $book_type = mime_content_type($_FILES['book']['tmp_name']);
+                if (!(($book_type == 'text/plain') || ($book_type == 'application/xml'))) {
+                    Session::setFlash("Вы грузите не книгу!!!");
+                    Router::redirect('/admin/books/edit/' . $_POST['id'] );
+                    return;
+                }
+            }
+        }
+
+        if(isset($_FILES['image'])) {
+
+            if ($_FILES['image']['size'] != 0) {
+                $picture_type = mime_content_type($_FILES['image']['tmp_name']);
+                if (!(($picture_type == 'image/jpg') || ($picture_type == 'image/jpeg') || $picture_type == 'image/png')) {
+                    Session::setFlash("Вы грузите не изображение!!!");
+                    Router::redirect('/admin/books/edit/' . $_POST['id'] );
+                    return;
+                }
+            }
+        }
+
+        if(isset($_FILES['book']) && isset($_FILES['image'])) {
 
             $image_path = time() . $_FILES['image']['name'];
             $book_path = time() . $_FILES['book']['name'];
