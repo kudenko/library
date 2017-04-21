@@ -103,6 +103,8 @@
 
     public function admin_add()
     {
+        //var_dump($_FILES);
+
         $this->data['categories'] = $this->model->getCategories();
         $uploaddirPicture = Config::get('root') . Config::get('images');
         $uploaddirBook = Config::get('root') . Config::get('books');
@@ -112,6 +114,12 @@
             || isset($_POST['author']))){
             Session::setFlash("Все поля обязательны для заполнения");
             return;
+        }
+
+
+        if(isset($_FILES['book']) && isset($_FILES['image'])){
+            $image_path =   time() . $_FILES['image']['name'];
+            $book_path =  time() . $_FILES['book']['name'] ;
 
             foreach (Config::get('blacklist') as $item){
 
@@ -131,31 +139,28 @@
                 Session::setFlash("Размер файлов не должен превышать 10 Мбайт.");
                 return;
             }
-            //print_r( ($_FILES['book']['size']));
+           // print_r( ($_FILES['book']['name']));
             //echo('<pre>');
 //            var_dump((mime_content_type( $_FILES['book']['tmp_name'])));
 //            var_dump((mime_content_type( $_FILES['image']['tmp_name'])));
+            if(($_FILES['book']['name'] != 0) && ($_FILES['image']['size'] != 0)) {
+                $picture_type = mime_content_type($_FILES['image']['tmp_name']);
+                $book_type = mime_content_type($_FILES['book']['tmp_name']);
 
-            $picture_type = mime_content_type( $_FILES['image']['tmp_name']);
-            $book_type = mime_content_type( $_FILES['book']['tmp_name']);
 
+                if (!(($picture_type == 'image/jpg') || ($picture_type == 'image/jpeg') || $picture_type == 'image/png')) {
+                    Session::setFlash("Вы грузите не изображение!!!");
+                    return;
+                }
 
-            if(!(($picture_type == 'image/jpeg') || ($picture_type == 'image/jpeg') || $picture_type == 'image/png')) {
-                Session::setFlash("Вы грузите не изображение!!!");
-                return;
+                if (!(($book_type == 'text/plain') || ($book_type == 'application/xml'))) {
+                    Session::setFlash("Вы грузите не книгу!!!");
+                    return;
+                }
+            }else{
+                Session::setFlash('Книга и изображение обязательны для загрузки');
             }
 
-            if(!(($book_type == 'text/plain') || ($book_type == 'application/xml'))){
-                Session::setFlash("Вы грузите не книгу!!!");
-                return;
-            }
-        }
-
-
-
-        if(isset($_FILES['book']) && isset($_FILES['image'])){
-            $image_path =   time() . $_FILES['image']['name'];
-            $book_path =  time() . $_FILES['book']['name'] ;
 
             move_uploaded_file($_FILES['book']['tmp_name'], $uploaddirBook .
                 $book_path );
@@ -166,12 +171,15 @@
                 $_POST['book_path'] = $book_path;
                 if ($_POST) {
                     if ($this->model->save($_POST)) {
-                        Session::setFlash('Спасибо, книга загружена успешно.ится на сайте после проверки.');
+                        Session::setFlash('Спасибо, книга загружена успешно и доступна на сайте');
                     }
                 }
+            }else{
+                Session::setFlash('Вы не загрузили книгу, изображение или одно из полей осталось пустым. Пожалуйста, повторите попытку. ');
             }
 
         }
+
     }
 
     public function admin_delete()
@@ -191,15 +199,15 @@
     public function download(){
         //var_dump($_FILES);
 
-    $this->data['categories'] = $this->model->getCategories();
-    $uploaddirPicture = Config::get('root') . Config::get('images');
-    $uploaddirBook = Config::get('root') . Config::get('books');
-    //$dir = '/home/grey/hometask/php-academy/homeworks/functions_forms_tasks/6/gallery';
+        $this->data['categories'] = $this->model->getCategories();
+        $uploaddirPicture = Config::get('root') . Config::get('images');
+        $uploaddirBook = Config::get('root') . Config::get('books');
+        //$dir = '/home/grey/hometask/php-academy/homeworks/functions_forms_tasks/6/gallery';
 
         if(!(isset($_POST['alias']) || isset($_POST['title']) || isset($_POST['description'])
             || isset($_POST['author']))){
             Session::setFlash("Все поля обязательны для заполнения");
-
+            return;
         }
 
 
@@ -216,7 +224,7 @@
 
                 if(preg_match("/$item\$/i", $_FILES['book']['name'])){
                     Session::setFlash("Вы грузите не книгу!!!");
-                   return;
+                    return;
                 }
 
             }
@@ -225,23 +233,26 @@
                 Session::setFlash("Размер файлов не должен превышать 10 Мбайт.");
                 return;
             }
-            //print_r( ($_FILES['book']['size']));
+            // print_r( ($_FILES['book']['name']));
             //echo('<pre>');
 //            var_dump((mime_content_type( $_FILES['book']['tmp_name'])));
 //            var_dump((mime_content_type( $_FILES['image']['tmp_name'])));
+            if(($_FILES['book']['name'] != 0) && ($_FILES['image']['size'] != 0)) {
+                $picture_type = mime_content_type($_FILES['image']['tmp_name']);
+                $book_type = mime_content_type($_FILES['book']['tmp_name']);
 
-            $picture_type = mime_content_type( $_FILES['image']['tmp_name']);
-            $book_type = mime_content_type( $_FILES['book']['tmp_name']);
 
+                if (!(($picture_type == 'image/jpg') || ($picture_type == 'image/jpeg') || $picture_type == 'image/png')) {
+                    Session::setFlash("Вы грузите не изображение!!!");
+                    return;
+                }
 
-            if(!(($picture_type == 'image/jpeg') || ($picture_type == 'image/jpeg') || $picture_type == 'image/png')) {
-                Session::setFlash("Вы грузите не изображение!!!");
-                return;
-            }
-
-            if(!(($book_type == 'text/plain') || ($book_type == 'application/xml'))){
-                Session::setFlash("Вы грузите не книгу!!!");
-                return;
+                if (!(($book_type == 'text/plain') || ($book_type == 'application/xml'))) {
+                    Session::setFlash("Вы грузите не книгу!!!");
+                    return;
+                }
+            }else{
+                Session::setFlash('Книга и изображение обязательны для загрузки');
             }
 
 
@@ -254,16 +265,16 @@
                 $_POST['book_path'] = $book_path;
                 if ($_POST) {
                     if ($this->model->save($_POST)) {
-                        Session::setFlash('Спасибо, книга загружена успешно. Она появится на сайте после проверки.');
+                        Session::setFlash('Спасибо, книга загружена успешно и доступна на сайте');
                     }
                 }
             }else{
-                Session::setFlash('Вы не загрузили книгу или изображение. Пожалуйста, повторите попытку. ');
+                Session::setFlash('Вы не загрузили книгу, изображение или одно из полей осталось пустым. Пожалуйста, повторите попытку. ');
             }
 
         }
-    }
 
+    }
     public function page404(){
 
 }
