@@ -62,7 +62,6 @@ class Book extends Model{
 
         $id = (int)$id;
 
-
         $alias = $this->db->escape($data['alias']);
         $title = $this->db->escape($data['title']);
         $description = trim($this->db->escape($data['description']));

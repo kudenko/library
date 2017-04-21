@@ -45,14 +45,14 @@
 
 
             if ($_POST) {
-                 var_dump($_POST);
+
                 $id = isset($_POST['id']) ? $_POST['id'] : null;
 
                 $result = $this->model->save($_POST, $id);
                 if ($result) {
-                    Session::setFlash("Category was saved");
+                    Session::setFlash("Категория сохранена");
                 } else {
-                    Session::setFlash("Category did't saved");
+                    Session::setFlash("Категория не сохранена");
                 }
                // Router::redirect('/admin/categories');
             }

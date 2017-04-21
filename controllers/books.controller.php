@@ -70,12 +70,11 @@
                     return;
                 }
 
+
+
             }
 
-
-
-
-            if (($_FILES['book']['name'] != 0)) {
+            if (($_FILES['book']['size'] != 0)) {
 
                 $book_type = mime_content_type($_FILES['book']['tmp_name']);
                 if (!(($book_type == 'text/plain') || ($book_type == 'application/xml'))) {
@@ -98,23 +97,31 @@
             }
         }
 
-        if(isset($_FILES['book']) && isset($_FILES['image'])) {
-
-            $image_path = time() . $_FILES['image']['name'];
+        if(isset($_FILES['book']) ) {
+            
             $book_path = time() . $_FILES['book']['name'];
 
             move_uploaded_file($_FILES['book']['tmp_name'], $uploaddirBook .
                 $book_path);
-            move_uploaded_file($_FILES['image']['tmp_name'], $uploaddirPicture .
-                $image_path);
+
             if ($_FILES['book']['size'] != 0) {
                 $_POST['book_path'] = $book_path;
             }
+
+        }
+
+        if(isset($_FILES['image'])){
+            $image_path = time() . $_FILES['image']['name'];
+            move_uploaded_file($_FILES['image']['tmp_name'], $uploaddirPicture .
+                $image_path);
             if($_FILES['image']['size'] != 0) {
                 $_POST['image_path'] = $image_path;
 
             }
         }
+
+
+
             if ($_POST) {
             //echo "<pre>";
             //var_dump($_POST);
