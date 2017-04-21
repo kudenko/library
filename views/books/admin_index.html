@@ -25,7 +25,7 @@
             <a href="/admin/books/edit/<?= $book_data['id'] ?>"><button class="btn btn-sm btn-primary">
                 Edit</button></a>
             <button class="del btn btn-sm btn-warning" data-id="<?= $book_data['id'] ?>">
-                Delete</button></a>
+                Delete</button>
 
 
 
@@ -62,11 +62,10 @@
             ?></td>
 
         <td align="right">
-            <a href="/admin/books/edit/<?= $book_data['id'] ?>"><button class="del btn btn-sm btn-primary">
+            <a href="/admin/books/edit/<?= $book_data['id'] ?>"><button class="btn btn-sm btn-primary">
                 Edit</button></a>
-                <button class="del btn btn-sm btn-warning" data-id="<?= $book_data['id'] ?>">
-
-            Delete</button></a>
+            <button class="del btn btn-sm btn-warning" data-id="<?= $book_data['id'] ?>">
+                Delete</button>
         </td>
         <?php } ?>
     </tr>

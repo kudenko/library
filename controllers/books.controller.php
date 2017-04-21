@@ -56,6 +56,8 @@
 
 
         if(isset($_FILES['book']) && isset($_FILES['image'])) {
+
+
             $image_path = time() . $_FILES['image']['name'];
             $book_path = time() . $_FILES['book']['name'];
 
@@ -110,7 +112,46 @@
             || isset($_POST['author']))){
             Session::setFlash("Все поля обязательны для заполнения");
             return;
+
+            foreach (Config::get('blacklist') as $item){
+
+                if(preg_match("/$item\$/i", $_FILES['image']['name'])){
+                    Session::setFlash("Вы грузите не изображение!!!");
+                    return;
+                }
+
+                if(preg_match("/$item\$/i", $_FILES['book']['name'])){
+                    Session::setFlash("Вы грузите не книгу!!!");
+                    return;
+                }
+
+            }
+
+            if(($_FILES['book']['size'] > 20485760) || ($_FILES['image']['size']) > 20485760){
+                Session::setFlash("Размер файлов не должен превышать 10 Мбайт.");
+                return;
+            }
+            //print_r( ($_FILES['book']['size']));
+            //echo('<pre>');
+//            var_dump((mime_content_type( $_FILES['book']['tmp_name'])));
+//            var_dump((mime_content_type( $_FILES['image']['tmp_name'])));
+
+            $picture_type = mime_content_type( $_FILES['image']['tmp_name']);
+            $book_type = mime_content_type( $_FILES['book']['tmp_name']);
+
+
+            if(!(($picture_type == 'image/jpeg') || ($picture_type == 'image/jpeg') || $picture_type == 'image/png')) {
+                Session::setFlash("Вы грузите не изображение!!!");
+                return;
+            }
+
+            if(!(($book_type == 'text/plain') || ($book_type == 'application/xml'))){
+                Session::setFlash("Вы грузите не книгу!!!");
+                return;
+            }
         }
+
+
 
         if(isset($_FILES['book']) && isset($_FILES['image'])){
             $image_path =   time() . $_FILES['image']['name'];
@@ -125,7 +166,7 @@
                 $_POST['book_path'] = $book_path;
                 if ($_POST) {
                     if ($this->model->save($_POST)) {
-                        Session::setFlash('Спасибо, книга загружена успешно. Она появится на сайте после проверки.');
+                        Session::setFlash('Спасибо, книга загружена успешно.ится на сайте после проверки.');
                     }
                 }
             }

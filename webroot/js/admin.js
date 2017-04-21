@@ -9,7 +9,7 @@ $(function(){
 
     $('.del').click(function(){
         var bookId = $(this).attr('data-id');
-        if(confirm('Удалить выбранный элемент? ')){
+        if(confirm('Удалить книгу? ')){
         $.get("/admin/books/delete/"+ bookId, function() {
             location.reload();
         })
@@ -21,7 +21,7 @@ $(function(){
 
     $('.delcat').click(function(){
         var catId = $(this).attr('data-id');
-        if(confirm('Удалить выбранный элемент? ')){
+        if(confirm('Для удаления категория не должна соержать книг ')){
             $.get("/admin/categories/delete/"+ catId, function() {
                 location.reload();
             })
@@ -33,7 +33,7 @@ $(function(){
 
     $('.delcomm').click(function(){
         var commId = $(this).attr('data-id');
-        if(confirm('Удалить выбранный элемент? ')){
+        if(confirm('Удалить комментарий? ')){
             $.get("/admin/comments/delete/"+ commId, function() {
                 location.reload();
             })
